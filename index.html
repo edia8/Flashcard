@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Dinamic</title>
+    <style>
+        
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabel Dinamic</h1>
+    <button id="add-column">Adaugă Coloană</button>
+    <button id="delete-column">Sterge Coloana</button>
+    <button id="save-table">Salvează Tabelul</button>
+    <br><br>
+    <table id="dynamic-table">
+        <thead>
+            <tr id="header-row">
+                <th contenteditable="true">
+
+                </th>
+                <!-- Antetul tabelului va fi generat dinamic -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Conținutul tabelului va fi generat dinamic -->
+        </tbody>
+    </table>
+    <button id="add-row">Adaugă Rând</button>
+    <button id="delete-row">Sterge Rand</button>
+    <p id="response"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>

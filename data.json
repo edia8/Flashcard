@@ -1,0 +1,16 @@
+{
+  "0": {
+    "Nume": "Ignat",
+    "Prenume": "Alexandru",
+    "Gen": "M",
+    "CNP": "506843",
+    "Adresa": "16 februarie"
+  },
+  "1": {
+    "Nume": "Luca",
+    "Prenume": "eles",
+    "Gen": "M",
+    "CNP": "567876543",
+    "Adresa": "Dersca"
+  }
+}
