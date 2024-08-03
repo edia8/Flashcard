@@ -15,9 +15,27 @@
 
         .container {
             text-align: center;
-            margin-bottom: 20vh; /* Ajustează spațiul de jos */
-        }
+            /*margin-bottom: 20vh; /* Ajustează spațiul de jos */
+            position: absolute;
+                top: 65%;
+                left: 50%;
+                -ms-transform: translate(-60%, -60%);
+                transform: translate(-50%, -50%);
 
+        }
+        .casete{
+            text-align: center;
+            position: absolute;
+                top: 45%;
+                left: 50%;
+                -ms-transform: translate(-45%, -45%);
+                transform: translate(-50%, -50%);
+        }
+        .pentrutext{
+            width: 150px;
+            height: 50px;
+            cursor:pointer;
+        }
         .big-red-button {
             width: 150px;
             height: 150px;
@@ -53,6 +71,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        
         @media (max-width: 600px) {
             .big-red-button {
                 width: 100px;
@@ -81,16 +100,78 @@
 
     <script src="script.js"></script>
 
-
+    <div class="casete">
+        <button id="primu" class="pentrutext" onclick="if(x!=0)schimba1();if(b2==false)schimba2()";></button> pentru <button id="doilea" class="pentrutext" onclick="if(x!=0)schimba2();if(b1==false)schimba1()";></button>    
+    </div>
     <div class="container">
-        <button class="big-red-button"></button>
-        <button></button>
-        <div class="text-box">
+        <button class="big-red-button" id="buton_de_spin"></button><br><br>
+        <button id="braspuns">Arata Rasupunsul</button>
+        <div class="text-box" id="raspunsuri">
             <!-- Textul tău poate fi adăugat aici -->
         </div>
     </div>
 
 </body>
+<script>
+            let x=0,b1=true,b2=true,val1,val2;
+        function schimba1()
+        {
+            var property = document.getElementById("primu");
+            if(b1==true){
+                property.style.backgroundColor = "#817E7E";
+                b1=!b1;
+            }else{
+                property.style.backgroundColor = "#FFFFFF";
+                b1=!b1;
+            }
+
+        }
+        function schimba2()
+        {
+            var property = document.getElementById("doilea");
+            if(b2==true){
+                property.style.backgroundColor = "#817E7E";
+                b2=!b2;
+            }else{
+                property.style.backgroundColor = "#FFFFFF";
+                b2=!b2;
+            }
+
+        }
+        function generare()
+        {
+            if(b1==true)
+                val1=Math.floor(Math.random() * contor1);
+            if(b2==true)
+                val2=Math.floor(Math.random() * contor2);
+
+        // document.getElementById("primu").innerHTML = g; 
+         //document.getElementById("doilea").innerHTML = ;
+        }
+        document.getElementById("buton_de_spin").addEventListener('click',function(){
+            document.getElementById("raspunsuri").innerHTML = " ";
+            fetch('data.json')
+            .then(response => response.json())
+            .then(data =>{
+                let n = Object.keys(data).length;
+                let m = Object.entries(data[0]).length;
+                val1 = Math.floor(Math.random() * (m-1));
+                val2 = Math.floor(Math.random() * n);
+                console.log(val1,val2);
+                document.getElementById("primu").innerHTML = Object.entries(data[0])[val1+1][0];
+                document.getElementById("doilea").innerHTML = Object.entries(data[val2])[0][1];
+            })
+
+        });
+        document.getElementById("braspuns").addEventListener('click',function(){
+            fetch('data.json')
+            .then(response => response.json())
+            .then(data =>{
+                document.getElementById("raspunsuri").innerHTML = Object.entries(data[val2])[val1+1][1];
+            });
+        });
+
+</script>
 <br><br>
 <span class="menu-icon" onclick="openNav()">&#9776;</span>
 </html>
